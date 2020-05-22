@@ -4,6 +4,7 @@ import rodados.*
 
 
 test "Test con 2 dependencias" {
+	/*Instancias de las clases */
 	const deportes = new Dependencia()
 	const cultura = new Dependencia()
 	
@@ -18,6 +19,10 @@ test "Test con 2 dependencias" {
 	const kwid2 = new RenaultKwid()
 	const kwid3 = new RenaultKwid(tanqueAdicional = false)
 	
+	const interiorPopular = new Interiores()
+	const motorBataton = new Motores()
+	
+	/*Configuración de las instancias de las clases */
 	deportes.setEmpleados(45)
 	cultura.setEmpleados(31)
 	
@@ -30,9 +35,16 @@ test "Test con 2 dependencias" {
 	especial.setPeso(1200)
 	especial.setColor("Beige")
 	
+	interiorPopular.setPeso(1000)
+	interiorPopular.setCapacidad(12)
+	motorBataton.setPeso(500)
+	motorBataton.setVelocidad(80)
+	
+	/*Configuración de la trafic */
 	trafic.setMotor(motorBataton)
 	trafic.setInterior(interiorPopular)
 	
+	/*Agregado de flotas a cada dependencia */
 	deportes.agregarFlota(cachito)
 	deportes.agregarFlota(corsaAzul)
 	deportes.agregarFlota(corsaVerde)
@@ -43,8 +55,9 @@ test "Test con 2 dependencias" {
 	cultura.agregarFlota(kwid1)
 	cultura.agregarFlota(kwid2)
 	cultura.agregarFlota(kwid3)
-	cultura.agregarFlota(trafic)	
-
+	cultura.agregarFlota(trafic)
+	
+	/*Test a la dependencia "deportes" */	
 	assert.equals(6450, deportes.pesoTotalFlota())
 	assert.that(deportes.estaBienEquipada())
 	assert.equals(7, deportes.capacidadTotalEnColor("Azul"))
@@ -52,11 +65,11 @@ test "Test con 2 dependencias" {
 	assert.that(deportes.esGrande())
 	assert.equals(25, deportes.capacidadFaltante())
 	
+	/*Test a la dependencia "cultura" */
 	assert.equals(10700, cultura.pesoTotalFlota())
 	assert.notThat(cultura.estaBienEquipada())
 	assert.equals(10, cultura.capacidadTotalEnColor("Azul"))
 	assert.equals("Rojo", cultura.colorDelRodadoMasRapido())
 	assert.notThat(cultura.esGrande())
 	assert.equals(5, cultura.capacidadFaltante())
-
 }
