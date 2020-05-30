@@ -1,0 +1,8 @@
+import rodados.*
+
+test "Test para probar el error con Joaco" {
+   const corsa1 = new ChevroletCorsa(color="Rojo")
+	
+	assert.equals(150, corsa1.velocidadMaxima())
+
+}
